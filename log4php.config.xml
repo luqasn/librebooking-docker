@@ -1,0 +1,15 @@
+<log4php:configuration xmlns:log4php="http://logging.apache.org/log4php/">
+  <!-- doc: https://logging.apache.org/log4php/docs/configuration.html -->
+  <!-- loaded in ../lib/Common/Logging/Log.php -->
+  <appender name="defaultAppender" class="LoggerAppenderConsole">
+    <!-- <layout class="LoggerLayoutPattern"> -->
+    <!--   <param name="conversionPattern" value="%d [%t] %p %logger{0} - %m%n" /> -->
+    <!-- </layout> -->
+  </appender>
+
+  <!-- https://logging.apache.org/log4php/docs/introduction.html#Levels -->
+  <logger name="default">
+    <level value="WARN" />
+    <appender_ref ref="defaultAppender" />
+  </logger>
+</log4php:configuration>

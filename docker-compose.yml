@@ -1,0 +1,41 @@
+version: '3.4'
+
+services:
+
+  mariadb:
+    image: mariadb
+    restart: always
+    ports:
+      - 3306:3306
+    #volumes:
+    #  - /var/lib/mysql:/var/lib/mysql
+    environment:
+      - MARIADB_DATABASE=librebooking
+      - MARIADB_USER=librebooking
+      - MARIADB_PASSWORD=password
+      - MARIADB_ROOT_PASSWORD=rootpass
+    networks:
+      - librebooking
+
+  lb:
+    # image: limosek/librebooking
+    build:
+      context: .
+    restart: always
+    links:
+      - mariadb
+    ports:
+      - 8080:80
+    environment:
+      - LB_DATABASE__USER=librebooking
+      - LB_DATABASE__NAME=librebooking
+      - LB_DATABASE__PASSWORD=password
+      - LB_DATABASE__HOSTSPEC=mariadb
+      - LB_INSTALL_PASSWORD=install
+      - LB_SCRIPT_URL=http://localhost:8080
+      - LB_ADMIN_EMAIL=admin@example.com
+    networks:
+      - librebooking
+
+networks:
+  librebooking:
