@@ -30,7 +30,8 @@ RUN curl -sSfLo /tmp/booked.zip \
 
 WORKDIR /var/www/librebooking
 
-COPY log4php.config.xml /
+COPY log4php.config.xml .
+RUN cp config/config.dist.php config.php
 
 VOLUME ["/var/www/librebooking/uploads", "/var/www/librebooking/config"]
 
