@@ -3,7 +3,7 @@
 set -eo pipefail
 
 if [[ ! -z ${FORCE_CONFIG_RECREATE+x} || ! -f config/config.php ]]; then
-  cp config.php config/config.php
+  cp -a config.php config/config.php
   echo >> config/config.php
 
   # take all env vars prefixed with LB_ and turn them into config entries
@@ -23,7 +23,7 @@ if [[ ! -z ${FORCE_CONFIG_RECREATE+x} || ! -f config/config.php ]]; then
 fi
 
 if [[ ! -f config/log4php.config.xml ]]; then
-  cp log4php.config.xml config/
+  cp -a log4php.config.xml config/
 fi
 
 apache2-foreground

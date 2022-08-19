@@ -35,4 +35,5 @@ RUN cp config/config.dist.php config.php
 
 VOLUME ["/var/www/librebooking/uploads", "/var/www/librebooking/config"]
 
+USER root
 ENTRYPOINT ["/entrypoint.sh"]
